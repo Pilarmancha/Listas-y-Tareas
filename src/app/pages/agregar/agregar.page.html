@@ -1,0 +1,62 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar color="mostaza">
+        <ion-buttons slot="start">
+            <ion-back-button color="berenjena" defaultHref="/"></ion-back-button>
+        </ion-buttons>
+
+        <ion-title class="texto">{{lista.titulo}}
+        </ion-title>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content color="mostaza">
+
+    <ion-list>
+        <ion-item>
+            <ion-label position="floating" color="success">
+                <ion-icon name="create" color="success" class="cambiarTamano"></ion-icon>
+                <span class="colocarEtiqueta">Añadir</span>
+            </ion-label>
+            <ion-input type="text" [(ngModel)]="nombreItem" (keyup.enter)="agregarItem()"></ion-input>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+
+
+        <ion-list-header *ngIf="lista.items.length > 0">
+            <ion-label class="ion-text-center">
+                <h1 class="texto">Tareas por realizar</h1>
+            </ion-label>
+        </ion-list-header>
+
+
+        <ion-reorder-group disabled="false" (ionItemReorder)="reorder( $event )">
+            <ion-item-sliding *ngFor="let item of lista.items; let i = index">
+                <ion-item>
+                    <ion-checkbox slot="start" color="berenjena" [(ngModel)]="item.completado" (ionChange)="cambioCheck(item)"></ion-checkbox>
+                    <ion-label>{{item.desc}}</ion-label>
+                    <ion-reorder slot="end">
+                        <ion-icon name="repeat"></ion-icon>
+                    </ion-reorder>
+                </ion-item>
+
+                <ion-item-options side="end">
+                    <ion-item-option color="danger" (click)="delete(i)">
+                        <ion-icon slot="icon-only" name="trash"></ion-icon>
+                    </ion-item-option>
+                </ion-item-options>
+
+            </ion-item-sliding>
+        </ion-reorder-group>
+
+    </ion-list>
+
+
+
+
+
+
+
+</ion-content>

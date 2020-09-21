@@ -1,0 +1,23 @@
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar color="mostaza">
+        <ion-title>
+            <h2 class="tamanoTexto">Listas y tareas pendientes</h2>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="mostaza">
+
+    <div *ngIf="deseosService.listas.length === 0" class="centrado">
+        <h1>No hay tareas pendientes</h1>
+    </div>
+
+    <app-listas [terminada]="false"></app-listas>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="agregarLista()" color="naranja">
+            <ion-icon name="add-circle"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>
